@@ -21,13 +21,21 @@ func (b tradingErrorImpl) Error() string {
 }
 
 func (b tradingErrorImpl) OriginalError() error {
-	return b.originalError
+	if b.originalError != nil {
+		return b.originalError
+	}
+	return nil
 }
 
-func NewTradingError(errorCode string, message string, originalError error) TradingError {
+func (b tradingErrorImpl) AddOriginalError(err error) {
+	if err != nil {
+		b.originalError = err
+	}
+}
+
+func NewTradingError(errorCode string, message string) TradingError {
 	return &tradingErrorImpl{
-		errorCode:     errorCode,
-		message:       message,
-		originalError: originalError,
+		errorCode: errorCode,
+		message:   message,
 	}
 }
