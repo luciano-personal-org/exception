@@ -4,6 +4,7 @@ type TradingError interface {
 	ErrorCode() string
 	Error() string
 	OriginalError() error
+	SetOriginalError(err error)
 }
 
 type tradingErrorImpl struct {
@@ -27,7 +28,7 @@ func (b tradingErrorImpl) OriginalError() error {
 	return nil
 }
 
-func (b tradingErrorImpl) AddOriginalError(err error) {
+func (b tradingErrorImpl) SetOriginalError(err error) {
 	if err != nil {
 		b.originalError = err
 	}
