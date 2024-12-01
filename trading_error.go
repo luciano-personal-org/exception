@@ -17,43 +17,27 @@ type tradingErrorImpl struct {
 }
 
 func (b tradingErrorImpl) Details() string {
-	if b.details != "" {
-		return b.details
-	}
-	return ""
+	return b.details
 }
 
 func (b tradingErrorImpl) ErrorCode() string {
-	if b.errorCode != "" {
-		return b.errorCode
-	}
-	return ""
+	return b.errorCode
 }
 
 func (b tradingErrorImpl) Error() string {
-	if b.message != "" {
-		return b.message
-	}
-	return ""
+	return b.message
 }
 
 func (b tradingErrorImpl) OriginalError() error {
-	if b.originalError != nil {
-		return b.originalError
-	}
-	return nil
+	return b.originalError
 }
 
 func (b tradingErrorImpl) SetOriginalError(err error) {
-	if err != nil {
-		b.originalError = err
-	}
+	b.originalError = err
 }
 
 func (b tradingErrorImpl) SetDetails(details string) {
-	if details != "" {
-		b.details = details
-	}
+	b.details = details
 }
 
 func NewTradingError(errorCode string, message string) TradingError {

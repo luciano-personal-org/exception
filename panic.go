@@ -13,14 +13,8 @@ func DoPanic(err interface{}) {
 		if te, ok := err.(TradingError); ok {
 			// Print the message and code.
 			fmt.Printf("Custom Error: %s, Code: %s\n", te.Error(), te.ErrorCode())
-			// Check if there are details.
-			if te.Details() != "" {
-				fmt.Printf("Details: %s\n", te.Details())
-			}
-			// Check if there is an original error.
-			if te.OriginalError() != nil {
-				fmt.Printf("Original Error: %s\n", te.OriginalError().Error())
-			}
+			fmt.Printf("Details: %s\n", te.Details())
+			fmt.Printf("Original Error: %s\n", te.OriginalError().Error())
 		}
 		// Panic with the error.
 		panic(err)
@@ -35,14 +29,8 @@ func DontPanic(err interface{}) {
 		if te, ok := err.(TradingError); ok {
 			// Print the message and code.
 			fmt.Printf("Custom Error: %s, Code: %s\n", te.Error(), te.ErrorCode())
-			// Check if there are details.
-			if te.Details() != "" {
-				fmt.Printf("Details: %s\n", te.Details())
-			}
-			// Check if there is an original error.
-			if te.OriginalError() != nil {
-				fmt.Printf("Original Error: %s\n", te.OriginalError().Error())
-			}
+			fmt.Printf("Details: %s\n", te.Details())
+			fmt.Printf("Original Error: %s\n", te.OriginalError().Error())
 		}
 	}
 }
