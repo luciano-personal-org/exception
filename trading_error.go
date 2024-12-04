@@ -40,7 +40,7 @@ func (b tradingErrorImpl) SetDetails(details string) {
 	b.details = details
 }
 
-func NewTradingError(errorCode string, message string, details string, originalError string) TradingError {
+func NewTradingError(errorCode string, message string) TradingError {
 	return &tradingErrorImpl{
 		errorCode: errorCode,
 		message:   message,
