@@ -5,13 +5,14 @@ type TradingError interface {
 	ErrorCode() string
 	Error() string
 	OriginalError() error
-	// SetOriginalError(err error)
-	// SetDetails(details string)
+	SetOriginalError(err error)
+	SetDetails(details string)
 }
 
 type tradingErrorImpl struct {
 	details       string
 	errorCode     string
+	message       string
 	originalError error
 }
 
@@ -24,20 +25,24 @@ func (b tradingErrorImpl) ErrorCode() string {
 }
 
 func (b tradingErrorImpl) Error() string {
-	return b.originalError.Error()
+	return b.message
 }
 
 func (b tradingErrorImpl) OriginalError() error {
 	return b.originalError
 }
 
-func (b tradingErrorImpl) SetOriginalError(originalError error) {
-	b.originalError = originalError
+func (b tradingErrorImpl) SetOriginalError(err error) {
+	b.originalError = err
 }
 
-func NewTradingError(errorCode string, details string) TradingError {
+func (b tradingErrorImpl) SetDetails(details string) {
+	b.details = details
+}
+
+func NewTradingError(errorCode string, message string, details string, originalError string) TradingError {
 	return &tradingErrorImpl{
 		errorCode: errorCode,
-		details:   details,
+		message:   message,
 	}
 }
