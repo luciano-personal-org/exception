@@ -31,10 +31,13 @@ func (b tradingErrorImpl) OriginalError() error {
 	return b.originalError
 }
 
-func NewTradingError(errorCode string, details string, originalError error) TradingError {
+func (b tradingErrorImpl) SetOriginalError(originalError error) {
+	b.originalError = originalError
+}
+
+func NewTradingError(errorCode string, details string) TradingError {
 	return &tradingErrorImpl{
-		errorCode:     errorCode,
-		details:       details,
-		originalError: originalError,
+		errorCode: errorCode,
+		details:   details,
 	}
 }
