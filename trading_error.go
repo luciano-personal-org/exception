@@ -16,27 +16,27 @@ type tradingErrorImpl struct {
 	originalError error
 }
 
-func (b tradingErrorImpl) Details() string {
+func (b *tradingErrorImpl) Details() string {
 	return b.details
 }
 
-func (b tradingErrorImpl) ErrorCode() string {
+func (b *tradingErrorImpl) ErrorCode() string {
 	return b.errorCode
 }
 
-func (b tradingErrorImpl) Error() string {
+func (b *tradingErrorImpl) Error() string {
 	return b.message
 }
 
-func (b tradingErrorImpl) OriginalError() error {
+func (b *tradingErrorImpl) OriginalError() error {
 	return b.originalError
 }
 
-func (b tradingErrorImpl) SetOriginalError(err error) {
+func (b *tradingErrorImpl) SetOriginalError(err error) {
 	b.originalError = err
 }
 
-func (b tradingErrorImpl) SetDetails(details string) {
+func (b *tradingErrorImpl) SetDetails(details string) {
 	b.details = details
 }
 
