@@ -47,15 +47,15 @@ func DoPanicWithLog(err interface{}, logger logr.Logger) {
 			// Print the message and code.
 			if logger.GetSink() != nil {
 				if te.Error() != "" {
-					error_message = fmt.Sprintf("Custom Error: %s\n", te.Error())
+					error_message = fmt.Sprintf("Custom Error: %s, ", te.Error())
 					if te.ErrorCode() != "" {
-						error_message = fmt.Sprintf("%sCode: %s\n", error_message, te.ErrorCode())
+						error_message = fmt.Sprintf("%sCode: %s, ", error_message, te.ErrorCode())
 					}
 					if te.Details() != "" {
-						error_message = fmt.Sprintf("%sDetails: %s\n", error_message, te.Details())
+						error_message = fmt.Sprintf("%sDetails: %s, ", error_message, te.Details())
 					}
 					if te.OriginalError().Error() != "" {
-						error_message = fmt.Sprintf("%sOriginal Error: %s\n", error_message, te.OriginalError().Error())
+						error_message = fmt.Sprintf("%sOriginal Error: %s, ", error_message, te.OriginalError().Error())
 					}
 				}
 				logger.Error(err.(error), error_message)
@@ -75,15 +75,15 @@ func DontPanicWithLog(err interface{}, logger logr.Logger) {
 			// Print the message and code.
 			if logger.GetSink() != nil {
 				if te.Error() != "" {
-					error_message = fmt.Sprintf("Custom Error: %s\n", te.Error())
+					error_message = fmt.Sprintf("Custom Error: %s, ", te.Error())
 					if te.ErrorCode() != "" {
-						error_message = fmt.Sprintf("%sCode: %s\n", error_message, te.ErrorCode())
+						error_message = fmt.Sprintf("%sCode: %s, ", error_message, te.ErrorCode())
 					}
 					if te.Details() != "" {
-						error_message = fmt.Sprintf("%sDetails: %s\n", error_message, te.Details())
+						error_message = fmt.Sprintf("%sDetails: %s, ", error_message, te.Details())
 					}
 					if te.OriginalError().Error() != "" {
-						error_message = fmt.Sprintf("%sOriginal Error: %s\n", error_message, te.OriginalError().Error())
+						error_message = fmt.Sprintf("%sOriginal Error: %s, ", error_message, te.OriginalError().Error())
 					}
 				}
 				logger.Error(err.(error), error_message)
