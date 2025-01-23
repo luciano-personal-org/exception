@@ -54,6 +54,9 @@ func DoPanicWithLog(err interface{}, logger logr.Logger) {
 					if te.Details() != "" {
 						error_message = fmt.Sprintf("%sDetails: %s\n", error_message, te.Details())
 					}
+					if te.OriginalError().Error() != "" {
+						error_message = fmt.Sprintf("%sOriginal Error: %s\n", error_message, te.OriginalError().Error())
+					}
 				}
 				logger.Error(err.(error), error_message)
 			}
@@ -78,6 +81,9 @@ func DontPanicWithLog(err interface{}, logger logr.Logger) {
 					}
 					if te.Details() != "" {
 						error_message = fmt.Sprintf("%sDetails: %s\n", error_message, te.Details())
+					}
+					if te.OriginalError().Error() != "" {
+						error_message = fmt.Sprintf("%sOriginal Error: %s\n", error_message, te.OriginalError().Error())
 					}
 				}
 				logger.Error(err.(error), error_message)
